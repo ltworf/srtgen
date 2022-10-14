@@ -50,3 +50,17 @@ def transcribe_file(filename: Path, language: str) -> TranscribedText:
         language=language
     )
     return load(result, TranscribedText)
+
+
+def _format_timestamp(timestamp: float) -> str:
+    '''
+    Format a seconds timestamp into the srt format
+    '''
+    millis = int(timestamp - int(timestamp)) * 1000
+    itimestamp = int(timestamp)
+
+    seconds = int(itimestamp % 60)
+    minutes = int(itimestamp // 60) % 60
+    hours = int(itimestamp // 3600)
+
+    return f'{hours:02}:{minutes:02}:{seconds:02},{millis:03}'
