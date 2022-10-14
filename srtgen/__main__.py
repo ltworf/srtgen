@@ -49,16 +49,14 @@ def get_args() -> Args:
 
 
 def main() -> None:
-    fname = Path(sys.argv[1])
-    language = sys.argv[2]
+    args = get_args()
+    for file in args.files
+        assert file.exists()
+        data = transcribe.transcribe_file(file, args.language)
+        with open(str(file)[:-4] + '.srt', 'wt') as f:
+            for line in transcribe.srt_data(data):
+                f.write(line)
 
-    data = transcribe.transcribe_file(fname, language)
-
-    destfile = Path(sys.argv[1][:-4] + '.srt')
-    with destfile.open('wt') as f:
-        for line in transcribe.srt_data(data):
-            f.write(line)
 
 if __name__ == '__main__':
     main()
-
