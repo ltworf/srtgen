@@ -17,7 +17,7 @@
 # author Salvo "LtWorf" Tomaselli <tiposchi@tiscali.it>
 
 from pathlib import Path
-from typing import NamedTuple
+from typing import NamedTuple, Iterator
 
 import whisper
 from typedload import load
@@ -64,3 +64,11 @@ def _format_timestamp(timestamp: float) -> str:
     hours = int(itimestamp // 3600)
 
     return f'{hours:02}:{minutes:02}:{seconds:02},{millis:03}'
+
+
+def srt_data(data: TranscribedText) -> Iterator[str]:
+    for c, i in enumerate(data.segments):
+        yield f'{c}\n'
+        yield f'{_format_timestamp(i.start)} --> {_format_timestamp(i.end)}\n'
+        yield i.text.strip()
+        yield '\n\n'
