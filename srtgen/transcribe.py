@@ -68,7 +68,7 @@ def _format_timestamp(timestamp: float) -> str:
 
 def srt_data(data: TranscribedText) -> Iterator[str]:
     for c, i in enumerate(data.segments):
-        yield f'{c}\n'
+        yield f'{c * 100}\n'
         yield f'{_format_timestamp(i.start)} --> {_format_timestamp(i.end)}\n'
         yield i.text.strip()
         yield '\n\n'
