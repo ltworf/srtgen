@@ -45,7 +45,7 @@ def get_args() -> Args:
         help="name of the whisper model to use",
     )
     parser.add_argument("files", nargs='+', type=str, help="files to subtitle")
-    args = load(parser.parse_args(), Cmdline)
+    return load(parser.parse_args(), Args)
 
 
 def main() -> None:
