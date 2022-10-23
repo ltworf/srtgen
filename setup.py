@@ -41,6 +41,5 @@ setup(
     },
     install_requires=[
         'typedload',
-        'whisper',
     ]
 )
