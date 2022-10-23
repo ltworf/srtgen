@@ -33,6 +33,11 @@ setup(
     classifiers=[
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Development Status :: 2 - Pre-Alpha',
+        'Environment :: Console',
+        'Intended Audience :: Religion',
+        'License :: OSI Approved :: GNU Affero General Public License v3',
+        'Topic :: Multimedia :: Sound/Audio :: Analysis',
     ],
     entry_points={
         'console_scripts': [
