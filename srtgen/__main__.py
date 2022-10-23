@@ -16,47 +16,7 @@
 #
 # author Salvo "LtWorf" Tomaselli <tiposchi@tiscali.it>
 
-import sys
-import argparse
-from pathlib import Path
-from typing import NamedTuple
-
-from typedload import load
-
-from . import transcribe
-
-
-class Args(NamedTuple):
-    language: str
-    files: tuple[Path, ...]
-
-
-def get_args() -> Args:
-    '''
-    Parse the command line
-    '''
-    parser = argparse.ArgumentParser(
-        prog="srtgen", description="Generate .srt files transcribing the audio using magic"
-    )
-    parser.add_argument(
-        '--language', '-l',
-        default='Italian',
-        choices=['Italian', 'Swedish', 'English'],
-        help="name of the whisper model to use",
-    )
-    parser.add_argument("files", nargs='+', type=str, help="files to subtitle")
-    args = load(parser.parse_args(), Cmdline)
-
-
-def main() -> None:
-    args = get_args()
-    for file in args.files
-        assert file.exists()
-        data = transcribe.transcribe_file(file, args.language)
-        with open(str(file)[:-4] + '.srt', 'wt') as f:
-            for line in transcribe.srt_data(data):
-                f.write(line)
-
+from . import main
 
 if __name__ == '__main__':
     main()
