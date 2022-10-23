@@ -19,7 +19,7 @@
 from setuptools import setup
 
 setup(
-    version='0.5',
+    version='0.1',
     name='srtgen',
     description='TODO',
     packages=('srtgen',),
