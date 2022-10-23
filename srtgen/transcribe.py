@@ -19,7 +19,6 @@
 from pathlib import Path
 from typing import NamedTuple, Iterator
 
-import whisper
 from typedload import load
 
 
@@ -43,7 +42,15 @@ class TranscribedText(NamedTuple):
 
 
 def transcribe_file(filename: Path, language: str) -> TranscribedText:
-    model = whisper.load_model('base')
+    try:
+        import whisper
+        model = whisper.load_model('base')
+    except Exception as e:
+        from sys import exit, stderr
+        print(e, file=stderr)
+        print('Did you install whisper?', file=stderr)
+        print('pip install git+https://github.com/openai/whisper.git', file=stderr)
+        exit(1)
     result = model.transcribe(
         str(filename),
         verbose=True,
