@@ -38,5 +38,9 @@ setup(
         'console_scripts': [
             'srtgen = srtgen:main',
         ]
-    }
+    },
+    install_requires=[
+        'typedload',
+        'whisper',
+    ]
 )
